@@ -5,11 +5,6 @@ import { handle } from 'hono/vercel';
 // Impor 'demoRoute' yang merupakan instance Hono dari file demo.ts
 import { demoRoute } from '../server/routes/demo';
 
-// Konfigurasi ini memberitahu Vercel untuk menjalankan fungsi ini di Edge Network.
-export const config = {
-  runtime: 'edge',
-};
-
 // Inisialisasi aplikasi Hono utama dengan base path /api.
 // Vercel akan mengarahkan semua request yang dimulai dengan /api ke file ini.
 const app = new Hono().basePath('/api');
@@ -19,5 +14,5 @@ const app = new Hono().basePath('/api');
 // maka request ke '/api/demo' akan ditangani dengan benar.
 app.route('/', demoRoute);
 
-// Ekspor handler yang sudah di-wrap oleh adapter Vercel.
+// Ekspor handler yang sudah di-wrap oleh adapter Vercel untuk runtime Node.js.
 export default handle(app);
